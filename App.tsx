@@ -1,20 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from "react";
+
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import { NavigationContainer } from "@react-navigation/native";
+import { StatusBar, View } from "react-native";
+
+import Navigation from "./app/navigation/Navigation";
+import { SplashScreenComponent } from "./app/screens";
+import { COLORS } from "./app/constants";
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    "montserrat-light": require("./app/assets/fonts/Montserrat-Light.ttf"),
+    "montserrat-regular": require("./app/assets/fonts/Montserrat-Regular.ttf"),
+    "montserrat-medium": require("./app/assets/fonts/Montserrat-Medium.ttf"),
+    "montserrat-bold": require("./app/assets/fonts/Montserrat-Bold.ttf"),
+  });
+
+  useEffect(() => {
+    async function prepareApp() {
+      try {
+        await SplashScreen.preventAutoHideAsync();
+
+        await new Promise((resolve) => setTimeout(resolve, 700));
+
+        await SplashScreen.hideAsync();
+      } catch (error) {
+        console.warn(error);
+      }
+    }
+
+    prepareApp();
+  }, []);
+
+  if (!fontsLoaded) {
+    return <SplashScreenComponent />;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={{ flex: 1 }}>
+      <StatusBar backgroundColor={COLORS.bg} barStyle="light-content" />
+      <NavigationContainer>
+        <Navigation />
+      </NavigationContainer>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

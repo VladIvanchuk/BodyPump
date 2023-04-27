@@ -1,0 +1,233 @@
+[
+  {
+    "id": "11",
+    "title": "Day 1",
+    "body": "Chest, biceps, legs",
+    "img": "https://i.ibb.co/VNnFqRc/gum-arms.png",
+    "progress": 75,
+    "IsActive": false,
+    "trainings": [
+      {
+        "id": "1",
+        "title": "Push-ups from the floor",
+        "description": "Exercise for warming up and preparing the pectoral muscles for training. Vary different types and widths of hand placements, and use a kickstand to make it more difficult.",
+        "sets": 2,
+        "reps": 13,
+        "rest": 40,
+        "img": "https://images.squarespace-cdn.com/content/v1/5ffcea9416aee143500ea103/1637984910435-SGHTSHKMT8JRWA5P1Q0L/Narrow-Hand%2BPush%2BUps.png"
+      },
+      {
+        "id": "2",
+        "title": "Chest Dip",
+        "description": "Stands in front of the machine feet shoulders width apart. Hold the handle with two hands and arms stretched",
+        "sets": 3,
+        "reps": 7,
+        "rest": 40,
+        "img": "https://images.squarespace-cdn.com/content/v1/55e406fbe4b0b03c5e7543ae/1500548411506-0KPX18CKI5ZT4FQAY82U/Chest+Dips"
+      },
+      {
+        "id": "3",
+        "title": "Bench Press",
+        "description": "Basic exercise for the chest muscles. It can be performed both with a barbell and in a bench press simulator. When performing on a horizontal bench, do not lift your legs up. Optionally, the inclination of the bench can be varied every week.",
+        "sets": 3,
+        "reps": 7,
+        "rest": 40,
+        "img": "https://www.inspireusafoundation.org/wp-content/uploads/2022/03/barbell-wide-grip-muscles.png"
+      },
+      {
+        "id": "4",
+        "title": "Barbell curls",
+        "description": "A key exercise for developing biceps muscles. When performing, use an average weight that allows you to perform up to 15 repetitions. Do not sway when lifting the bar and keep your elbows in the same point.",
+        "sets": 3,
+        "reps": 13,
+        "rest": 40,
+        "img": "https://qph.cf2.quoracdn.net/main-qimg-3c489663fcff1dc6d7c262f2586a4cb0"
+      },
+      {
+        "id": "5",
+        "title": "Smith Bench Curl",
+        "description": "When doing lifts in the Scott bench, due to the additional fixation of the elbow, the load on the long head of the biceps is increased - plus, using a curved EZ bar will also help increase the level of involvement of muscle fibers.",
+        "sets": 3,
+        "reps": 9,
+        "rest": 40,
+        "img": "https://workoutsofficial.com/wp-content/uploads/2020/03/1683.gif"
+      },
+      {
+        "id": "6",
+        "title": "Barbell Squats",
+        "description": "Basic exercise for leg muscles. Can be done with a barbell or on a leg press machine. As you perform, keep your abs in conscious tension as you lower yourself to the point where your thighs are parallel to the floor.",
+        "sets": 3,
+        "reps": 9,
+        "rest": 40,
+        "img": "https://www.inspireusafoundation.org/wp-content/uploads/2022/05/high-bar-squat-1024x596.png"
+      },
+      {
+        "id": 7,
+        "title": "Leg extension",
+        "description": "Exercise for targeted pumping of the front of the thigh. When performing, also make sure that the press remains in conscious tension. Don't help yourself lift the weight by arching your torso. Can be replaced with another leg exercise.",
+        "sets": 3,
+        "reps": 15,
+        "rest": 40,
+        "img": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Leg-Extension_41d91d3f-4b9c-4374-82e2-1d697ce35fe4_600x600.png?v=1612138862"
+      },
+      {
+        "id": "8",
+        "title": "Lunges",
+        "description": "Exercise to work out the gluteus medius. It can be performed both with body weight and with dumbbells. Optionally, they can be replaced with any other exercise for the buttocks.",
+        "sets": 3,
+        "reps": 15,
+        "rest": 40,
+        "img": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Lunge_600x600.png?v=1612138903"
+      }
+    ]
+  },
+  {
+    "id": "23e57e71-e065-4345-b9fe-77eadbd12ec5",
+    "title": "Day 2",
+    "body": "Shoulders, triceps, trapezius",
+    "img": "https://i.ibb.co/M7r5235/gym-shoulders.png",
+    "progress": 100,
+    "IsActive": false,
+    "trainings": [
+      {
+        "id": "1",
+        "title": "",
+        "description": "",
+        "sets": 3,
+        "reps": "",
+        "img": ""
+      },
+      {
+        "id": "1",
+        "title": "",
+        "description": "",
+        "sets": 3,
+        "reps": "",
+        "img": ""
+      },
+      {
+        "id": "1",
+        "title": "",
+        "description": "",
+        "sets": 3,
+        "reps": "",
+        "img": ""
+      },
+      {
+        "id": "1",
+        "title": "",
+        "description": "",
+        "sets": 3,
+        "reps": "",
+        "img": ""
+      },
+      {
+        "id": "1",
+        "title": "",
+        "description": "",
+        "sets": 3,
+        "reps": "",
+        "img": ""
+      },
+      {
+        "id": "1",
+        "title": "",
+        "description": "",
+        "sets": 3,
+        "reps": "",
+        "img": ""
+      },
+      {
+        "id": "1",
+        "title": "",
+        "description": "",
+        "sets": 3,
+        "reps": "",
+        "img": ""
+      },
+      {
+        "id": "1",
+        "title": "",
+        "description": "",
+        "sets": 3,
+        "reps": "",
+        "img": ""
+      }
+    ]
+  },
+  {
+    "id": "23e57e71-e088-4345-526-77eadbd12ec5",
+    "title": "Day 3",
+    "body": "Back and abs",
+
+    "img": "https://i.ibb.co/fVg12qG/gym-back.png",
+    "progress": 0,
+    "IsActive": true,
+    "trainings": [
+      {
+        "id": "1",
+        "title": "",
+        "description": "",
+        "sets": 3,
+        "reps": "",
+        "img": ""
+      },
+      {
+        "id": "1",
+        "title": "",
+        "description": "",
+        "sets": 3,
+        "reps": "",
+        "img": ""
+      },
+      {
+        "id": "1",
+        "title": "",
+        "description": "",
+        "sets": 3,
+        "reps": "",
+        "img": ""
+      },
+      {
+        "id": "1",
+        "title": "",
+        "description": "",
+        "sets": 3,
+        "reps": "",
+        "img": ""
+      },
+      {
+        "id": "1",
+        "title": "",
+        "description": "",
+        "sets": 3,
+        "reps": "",
+        "img": ""
+      },
+      {
+        "id": "1",
+        "title": "",
+        "description": "",
+        "sets": 3,
+        "reps": "",
+        "img": ""
+      },
+      {
+        "id": "1",
+        "title": "",
+        "description": "",
+        "sets": 3,
+        "reps": "",
+        "img": ""
+      },
+      {
+        "id": "1",
+        "title": "",
+        "description": "",
+        "sets": 3,
+        "reps": "",
+        "img": ""
+      }
+    ]
+  }
+]
