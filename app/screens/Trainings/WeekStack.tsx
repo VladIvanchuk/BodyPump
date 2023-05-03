@@ -12,17 +12,14 @@ import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { COLORS, images } from "../../constants";
-import Overlay from "../ui/Overlay";
-import HeaderText from "../ui/HeaderText";
-import Week from "./Week";
+import Overlay from "../../components/ui/Overlay";
+import HeaderText from "../../components/ui/HeaderText";
+import Week from "../../components/Weekly/Week";
+import { useNavigation } from "@react-navigation/native";
 
-interface IPropTypes {
-  state: boolean;
-  setState: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const WeekModal: FC<IPropTypes> = ({ state, setState }) => {
+const WeekStack: FC = () => {
   const weeks = [...Array(4)].map((_, index) => ({ id: index + 1 }));
+  const navigation = useNavigation();
 
   return (
     <SafeAreaView style={s.centeredView}>
@@ -35,7 +32,7 @@ const WeekModal: FC<IPropTypes> = ({ state, setState }) => {
         >
           <Overlay />
           <View style={s.header}>
-            <Pressable onPress={() => setState(!state)}>
+            <Pressable onPress={() => navigation.goBack()}>
               <Ionicons name="arrow-back" size={24} color={COLORS.white} />
             </Pressable>
             <HeaderText>Weekly training</HeaderText>
@@ -63,7 +60,7 @@ const WeekModal: FC<IPropTypes> = ({ state, setState }) => {
   );
 };
 
-export default WeekModal;
+export default WeekStack;
 
 const s = StyleSheet.create({
   centeredView: {

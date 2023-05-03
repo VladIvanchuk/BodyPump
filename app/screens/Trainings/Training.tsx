@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { global } from "../styles/global.style";
+import { global } from "../../styles/global.style";
 
-import { TrainingComponent, WeekPlan } from "../components";
+import { TrainingComponent, WeekPlan } from "../../components";
 
 const Training = () => {
   return (

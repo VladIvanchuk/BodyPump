@@ -1,38 +1,31 @@
-import {
-  StyleSheet,
-  View,
-  SafeAreaView,
-  Pressable,
-  FlatList,
-  Modal,
-  Text,
-} from "react-native";
+import { StyleSheet, View, SafeAreaView, Pressable, FlatList, Modal } from "react-native";
 import React, { FC, useState } from "react";
 import { IDay } from "../../types";
 import { COLORS } from "../../constants";
-import HeaderText from "../ui/HeaderText";
-import AppText from "../ui/AppText";
+import HeaderText from "../../components/ui/HeaderText";
+import AppText from "../../components/ui/AppText";
 import { Feather, Entypo, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { ITraining } from "../../types/training";
-import Workout from "./Workout";
-import WorkoutInfo from "./WorkoutInfo";
-import ButtonPrimary from "../ui/ButtonPrimary";
+import WorkoutInfo from "../../components/Weekly/WorkoutInfo";
+import ButtonPrimary from "../../components/ui/ButtonPrimary";
+import { useNavigation } from "@react-navigation/native";
 
 interface IPropTypes {
-  selectedDay: IDay;
-  setState: React.Dispatch<React.SetStateAction<IDay | null>>;
+  route: {
+    params: IDay;
+  };
 }
+const DayStack = ({ route }: IPropTypes) => {
+  const navigation = useNavigation();
+  const { title, trainings } = route.params;
 
-const DayModal: FC<IPropTypes> = ({ setState, selectedDay }) => {
-  const [trainingStatus, setTrainingStatus] = useState<boolean>(false);
-  const { title, trainings } = selectedDay;
   const trainingsData = trainings.map((training: ITraining) => training);
 
   return (
     <SafeAreaView style={s.modal}>
       <View style={s.header}>
         <View style={s.tittle}>
-          <Pressable onPress={() => setState(null)} style={s.back}>
+          <Pressable onPress={() => navigation.goBack()} style={s.back}>
             <Ionicons name="arrow-back" size={24} color={COLORS.white} />
           </Pressable>
           <HeaderText>{title}</HeaderText>
@@ -74,23 +67,13 @@ const DayModal: FC<IPropTypes> = ({ setState, selectedDay }) => {
       <ButtonPrimary
         style={s.start}
         tittle="Start"
-        onPress={() => setTrainingStatus(true)}
+        onPress={() => navigation.navigate("WorkoutStack", { trainings })}
       />
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={trainingStatus}
-        onRequestClose={() => {
-          setTrainingStatus(false);
-        }}
-      >
-        <Workout setState={setTrainingStatus} exercises={trainings} />
-      </Modal>
     </SafeAreaView>
   );
 };
 
-export default DayModal;
+export default DayStack;
 
 const s = StyleSheet.create({
   modal: {

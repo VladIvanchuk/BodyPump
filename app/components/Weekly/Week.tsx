@@ -9,17 +9,17 @@ import HeaderText from "../ui/HeaderText";
 import AppText from "../ui/AppText";
 import Day from "./Day";
 import { IDay } from "../../types";
-import DayModal from "./DayModal";
+import { useNavigation } from "@react-navigation/native";
 
 interface IPropTypes {
   number: number;
 }
 
 const Week: FC<IPropTypes> = ({ number }) => {
-  const [selectedDay, setSelectedDay] = useState<IDay | null>(null);
+  const navigation = useNavigation();
 
   const handleDayPress = (day: IDay) => {
-    setSelectedDay(day);
+    navigation.navigate("DayStack", day);
   };
 
   return (
@@ -42,16 +42,6 @@ const Week: FC<IPropTypes> = ({ number }) => {
           keyExtractor={(item) => item.id}
         />
       </View>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={selectedDay !== null}
-        onRequestClose={() => {
-          setSelectedDay(null);
-        }}
-      >
-        {selectedDay && <DayModal setState={setSelectedDay} selectedDay={selectedDay} />}
-      </Modal>
     </View>
   );
 };

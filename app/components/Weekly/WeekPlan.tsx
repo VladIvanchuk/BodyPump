@@ -1,33 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, View, ImageBackground, Pressable, Modal } from "react-native";
 
 import { AntDesign, Entypo } from "@expo/vector-icons";
 
 import { COLORS, images } from "../../constants";
-import WeekModal from "./WeekModal";
 import HeaderText from "../ui/HeaderText";
 import Overlay from "../ui/Overlay";
 import AppText from "../ui/AppText";
+import { useNavigation } from "@react-navigation/native";
 
 const WeekPlan = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const navigation = useNavigation();
 
   return (
     <View style={s.body}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <WeekModal state={modalVisible} setState={setModalVisible} />
-      </Modal>
       <View style={s.container}>
         <HeaderText>Weekly training plan</HeaderText>
       </View>
-      <Pressable onPress={() => setModalVisible(true)} style={s.wrapper}>
+      <Pressable onPress={() => navigation.navigate("WeekStack")} style={s.wrapper}>
         <ImageBackground
           source={images.trainings.gym}
           style={s.image}

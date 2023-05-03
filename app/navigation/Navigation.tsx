@@ -2,7 +2,8 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FONT, COLORS, images } from "../constants";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { Exercises, Training, Custom, Statistics, Me } from "../screens";
+import { Exercises, Custom, Statistics, Me } from "../screens";
+import TrainingStack from "./TrainingStack";
 
 const Navigation = () => {
   const Tab = createBottomTabNavigator();
@@ -16,7 +17,6 @@ const Navigation = () => {
         headerTintColor: COLORS.white,
         headerTitleStyle: { fontSize: 30, fontFamily: FONT.bold },
         headerShadowVisible: false,
-
         tabBarActiveTintColor: COLORS.primary,
         tabBarInactiveTintColor: "gray",
         tabBarStyle: {
@@ -37,7 +37,7 @@ const Navigation = () => {
     >
       <Tab.Screen
         name="Training"
-        component={Training}
+        component={TrainingStack}
         options={{
           tabBarIcon: ({ color, size }: ITabBarIcon) => (
             <FontAwesome5 name="dumbbell" size={20} color={color} />

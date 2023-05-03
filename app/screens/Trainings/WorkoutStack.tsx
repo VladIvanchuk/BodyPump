@@ -1,15 +1,21 @@
 import { ImageBackground, Pressable, StyleSheet, View } from "react-native";
 import React, { FC, useCallback, useState } from "react";
-import { WorkoutProps } from "../../types/training";
-import Timer from "../Timer";
-import HeaderText from "../ui/HeaderText";
+import { ITraining, WorkoutProps } from "../../types/training";
+import Timer from "../../components/Timer";
+import HeaderText from "../../components/ui/HeaderText";
 import { COLORS } from "../../constants";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
-import ButtonPrimary from "../ui/ButtonPrimary";
+import ButtonPrimary from "../../components/ui/ButtonPrimary";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 
-const Workout: FC<WorkoutProps> = (props) => {
-  const { setState, exercises } = props;
+interface IPropTypes {
+  route: {
+    params: ITraining[];
+  };
+}
+
+const WorkoutStack = ({ route }: IPropTypes) => {
+  const exercises = route.params;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const { img, title, reps, sets, rest } = exercises?.[currentIndex] || {};
@@ -35,7 +41,6 @@ const Workout: FC<WorkoutProps> = (props) => {
       setRestTime(rest);
     } else if (isLastWorkout) {
       navigation.navigate("Statistics");
-      setState(false);
     }
   }, [currentIndex, currentSet, exercises, rest, sets]);
 
@@ -75,7 +80,7 @@ const Workout: FC<WorkoutProps> = (props) => {
         />
       ) : (
         <>
-          <Pressable onPress={() => setState(false)} style={s.back}>
+          <Pressable onPress={() => navigation.goBack()} style={s.back}>
             <Ionicons name="arrow-back" size={24} color={COLORS.white} />
           </Pressable>
           <View style={s.imageBg}>
@@ -119,7 +124,7 @@ const Workout: FC<WorkoutProps> = (props) => {
   );
 };
 
-export default Workout;
+export default WorkoutStack;
 
 const s = StyleSheet.create({
   modal: {
