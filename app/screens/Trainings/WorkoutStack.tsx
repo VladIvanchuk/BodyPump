@@ -1,6 +1,6 @@
 import { ImageBackground, Pressable, StyleSheet, View } from "react-native";
 import React, { FC, useCallback, useState } from "react";
-import { ITraining, WorkoutProps } from "../../types/training";
+import { IDay } from "../../types/training";
 import Timer from "../../components/Timer";
 import HeaderText from "../../components/ui/HeaderText";
 import { COLORS } from "../../constants";
@@ -10,12 +10,12 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 
 interface IPropTypes {
   route: {
-    params: ITraining[];
+    params: IDay;
   };
 }
 
 const WorkoutStack = ({ route }: IPropTypes) => {
-  const exercises = route.params;
+  const exercises = route.params.trainings;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const { img, title, reps, sets, rest } = exercises?.[currentIndex] || {};

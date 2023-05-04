@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar, View } from "react-native";
-
-import Navigation from "./app/navigation/Navigation";
 import { SplashScreenComponent } from "./app/screens";
 import { COLORS } from "./app/constants";
+import StackNavigator from "./app/navigation/StackNavigator";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -41,7 +40,7 @@ export default function App() {
     <View style={{ flex: 1 }}>
       <StatusBar backgroundColor={COLORS.bg} barStyle="light-content" />
       <NavigationContainer>
-        <Navigation />
+        <StackNavigator />
       </NavigationContainer>
     </View>
   );
