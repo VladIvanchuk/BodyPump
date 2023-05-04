@@ -1,17 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { TransitionPresets, createStackNavigator } from "@react-navigation/stack";
-import { Training, WeekStack, DayStack, WorkoutStack } from "../screens";
-import { IDay } from "../types";
-import { ITraining } from "../types/training";
-import TabNavigator from "./TabNavigator";
+import { WeekStack, DayStack, WorkoutStack } from "../screens";
 
-type RootStackParamList = {
-  Home: undefined;
-  WeekStack: undefined;
-  DayStack: IDay;
-  WorkoutStack: IDay;
-};
+import TabNavigator from "./TabNavigator";
+import { RootStackParamList } from "../types";
 
 const TrainingStack = createStackNavigator<RootStackParamList>();
 

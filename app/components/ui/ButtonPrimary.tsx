@@ -7,8 +7,9 @@ interface IButtonPropTypes {
   tittle?: string;
   onPress: () => void;
   style?: {};
+  textColor?: string;
 }
-const ButtonPrimary: FC<IButtonPropTypes> = ({ tittle, onPress, style }) => {
+const ButtonPrimary: FC<IButtonPropTypes> = ({ tittle, onPress, style, textColor }) => {
   return (
     <Pressable
       onPress={onPress}
@@ -25,7 +26,7 @@ const ButtonPrimary: FC<IButtonPropTypes> = ({ tittle, onPress, style }) => {
         { ...style },
       ]}
     >
-      <HeaderText color={COLORS.bright}>{tittle}</HeaderText>
+      <HeaderText color={textColor ? textColor : COLORS.bright}>{tittle}</HeaderText>
     </Pressable>
   );
 };

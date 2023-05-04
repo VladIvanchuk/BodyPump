@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FONT, COLORS, images } from "../constants";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Exercises, Custom, Statistics, Me, Training } from "../screens";
-import StackNavigator from "./StackNavigator";
 
 const TabNavigator = () => {
   const Tab = createBottomTabNavigator();

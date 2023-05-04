@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
 
-import { COLORS } from "../constants";
-import AppText from "./ui/AppText";
-import HeaderText from "./ui/HeaderText";
+import { COLORS } from "../../constants";
+import AppText from "../ui/AppText";
+import HeaderText from "../ui/HeaderText";
 
 interface IPropTypes {
   title: string;

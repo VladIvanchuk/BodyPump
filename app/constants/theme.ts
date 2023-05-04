@@ -7,6 +7,7 @@ const COLORS = {
   primaryEasy: "rgba(57, 90, 219, 0.30)",
 
   dark: "#1E1E1E",
+  darkEasy: "rgba(28, 28, 28, 0.7)",
   bg: "#28292B",
 
   white: "#F3F4F8",

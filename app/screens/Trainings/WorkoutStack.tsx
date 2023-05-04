@@ -1,5 +1,12 @@
-import { ImageBackground, Pressable, StyleSheet, View } from "react-native";
-import React, { FC, useCallback, useState } from "react";
+import {
+  Alert,
+  BackHandler,
+  ImageBackground,
+  Pressable,
+  StyleSheet,
+  View,
+} from "react-native";
+import React, { FC, useCallback, useEffect, useState } from "react";
 import { IDay } from "../../types/training";
 import Timer from "../../components/Timer";
 import HeaderText from "../../components/ui/HeaderText";
@@ -7,6 +14,9 @@ import { COLORS } from "../../constants";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import ButtonPrimary from "../../components/ui/ButtonPrimary";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { QuitModal } from "../../components";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../types";
 
 interface IPropTypes {
   route: {
@@ -16,6 +26,8 @@ interface IPropTypes {
 
 const WorkoutStack = ({ route }: IPropTypes) => {
   const exercises = route.params.trainings;
+  const navigation =
+    useNavigation<StackNavigationProp<RootStackParamList, "WorkoutStack">>();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const { img, title, reps, sets, rest } = exercises?.[currentIndex] || {};
@@ -25,9 +37,10 @@ const WorkoutStack = ({ route }: IPropTypes) => {
   const [isResting, setIsResting] = useState(false);
   const [currentSet, setCurrentSet] = useState(1);
 
+  const [modalVisible, setModalVisible] = useState(false);
+
   const isLastSet = currentSet === sets;
   const isLastWorkout = currentIndex === exercises.length - 1 && isLastSet;
-  const navigation = useNavigation<NavigationProp<any>>();
 
   const handleComplete = useCallback(() => {
     if (currentIndex <= exercises.length - 1 && !isLastWorkout) {
@@ -47,6 +60,11 @@ const WorkoutStack = ({ route }: IPropTypes) => {
   const handleSkipRest = useCallback(() => {
     setIsResting(false);
     setRestTime(0);
+  }, []);
+
+  const handleRestart = useCallback(() => {
+    setCurrentIndex(0);
+    setCurrentSet(1);
   }, []);
 
   const handleNavigation = useCallback(
@@ -69,18 +87,22 @@ const WorkoutStack = ({ route }: IPropTypes) => {
     [currentReps]
   );
 
+  useEffect(() => {
+    const backAction = () => {
+      setModalVisible(true);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction);
+
+    return () => backHandler.remove();
+  }, []);
+
   return (
     <View style={s.modal}>
-      {isResting ? (
-        <Timer
-          time={restTime}
-          handleSkip={handleSkipRest}
-          exercise={exercises[currentIndex]}
-          currentSet={currentSet}
-        />
-      ) : (
+      {!isResting ? (
         <>
-          <Pressable onPress={() => navigation.goBack()} style={s.back}>
+          <Pressable onPress={() => setModalVisible(true)} style={s.back}>
             <Ionicons name="arrow-back" size={24} color={COLORS.white} />
           </Pressable>
           <View style={s.imageBg}>
@@ -119,6 +141,22 @@ const WorkoutStack = ({ route }: IPropTypes) => {
             </Pressable>
           </View>
         </>
+      ) : (
+        <Timer
+          time={restTime}
+          handleSkip={handleSkipRest}
+          exercise={exercises[currentIndex]}
+          currentSet={currentSet}
+          paused={modalVisible}
+        />
+      )}
+      {modalVisible && (
+        <QuitModal
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          handleRestart={handleRestart}
+          navigation={navigation}
+        />
       )}
     </View>
   );

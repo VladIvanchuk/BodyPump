@@ -11,9 +11,16 @@ interface TimerProps {
   handleSkip: () => void;
   exercise: ITraining;
   currentSet: number;
+  paused?: boolean;
 }
 
-const Timer: React.FC<TimerProps> = ({ time, handleSkip, currentSet, exercise }) => {
+const Timer: React.FC<TimerProps> = ({
+  time,
+  handleSkip,
+  currentSet,
+  exercise,
+  paused,
+}) => {
   const [seconds, setSeconds] = useState(time);
   const { title, reps, sets } = exercise;
 
@@ -25,8 +32,8 @@ const Timer: React.FC<TimerProps> = ({ time, handleSkip, currentSet, exercise })
     <View style={s.container}>
       <View style={s.top}></View>
       <CountdownCircleTimer
+        isPlaying={!paused}
         size={190}
-        isPlaying
         duration={seconds}
         strokeWidth={10}
         trailStrokeWidth={8}
