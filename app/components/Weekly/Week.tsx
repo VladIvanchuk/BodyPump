@@ -10,16 +10,22 @@ import AppText from "../ui/AppText";
 import Day from "./Day";
 import { IDay } from "../../types";
 import { useNavigation } from "@react-navigation/native";
+import { ITraining } from "../../types/training";
 
 interface IPropTypes {
   number: number;
+  trainings: IDay[];
+  allTrainings: ITraining[] | undefined;
 }
 
-const Week: FC<IPropTypes> = ({ number }) => {
+const Week: FC<IPropTypes> = ({ number, trainings, allTrainings }) => {
   const navigation = useNavigation();
 
   const handleDayPress = (day: IDay) => {
     navigation.navigate("DayStack", day);
+  };
+  const countDaysWithFullProgress = () => {
+    return trainings.filter((training) => training.progress === 100).length;
   };
 
   return (
@@ -30,15 +36,28 @@ const Week: FC<IPropTypes> = ({ number }) => {
         </View>
         <HeaderText>Week {number}</HeaderText>
         <View style={s.count}>
-          <AppText size={18}>0/7</AppText>
+          <AppText size={18}>
+            {countDaysWithFullProgress()}/{trainings.length}
+          </AppText>
         </View>
       </View>
       <View style={s.days}>
         <FlatList
-          data={data}
-          renderItem={({ item }) => (
-            <Day {...item} onPress={() => handleDayPress(item)} />
-          )}
+          data={trainings}
+          renderItem={({ item, index }) => {
+            const allTrainingsIndex = allTrainings?.findIndex((t) => t.id === item.id);
+            const previousProgress =
+              allTrainingsIndex && allTrainingsIndex > 0
+                ? allTrainings?.[allTrainingsIndex - 1].progress
+                : 0;
+            return (
+              <Day
+                {...item}
+                onPress={() => handleDayPress(item)}
+                previousProgress={previousProgress}
+              />
+            );
+          }}
           keyExtractor={(item) => item.id}
         />
       </View>

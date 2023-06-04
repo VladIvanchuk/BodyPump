@@ -1,4 +1,3 @@
-import React from "react";
 import { StyleSheet, View, ImageBackground, Pressable, Modal } from "react-native";
 
 import { AntDesign, Entypo } from "@expo/vector-icons";
@@ -9,17 +8,23 @@ import Overlay from "../ui/Overlay";
 import AppText from "../ui/AppText";
 import { useNavigation } from "@react-navigation/native";
 
-const WeekPlan = () => {
+const TrainingPlan = ({ id, name, description, image }) => {
   const navigation = useNavigation();
+
 
   return (
     <View style={s.body}>
       <View style={s.container}>
-        <HeaderText>Weekly training plan</HeaderText>
+        <HeaderText>{name} plan</HeaderText>
       </View>
-      <Pressable onPress={() => navigation.navigate("WeekStack")} style={s.wrapper}>
+      <Pressable
+        onPress={() => navigation.navigate("WeekStack", { id })}
+        style={s.wrapper}
+      >
         <ImageBackground
-          source={images.trainings.gym}
+          source={{
+            uri: `data:image/png;base64,${image}`,
+          }}
           style={s.image}
           imageStyle={{
             borderRadius: 10,
@@ -30,9 +35,7 @@ const WeekPlan = () => {
           <View style={s.item}>
             <View style={s.top}>
               <View style={s.dsc}>
-                <AppText size={16}>
-                  Exercises for different muscle groups 3 days a week
-                </AppText>
+                <AppText size={16}>{description}</AppText>
               </View>
               <AntDesign name="calendar" size={30} color={COLORS.primary} />
             </View>
@@ -52,7 +55,7 @@ const WeekPlan = () => {
   );
 };
 
-export default WeekPlan;
+export default TrainingPlan;
 
 const s = StyleSheet.create({
   body: {
@@ -90,6 +93,7 @@ const s = StyleSheet.create({
   },
   dsc: {
     width: "80%",
+    textAlign: "left",
   },
   bottom: {
     width: "100%",

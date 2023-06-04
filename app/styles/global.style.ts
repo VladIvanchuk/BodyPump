@@ -8,4 +8,7 @@ export const global = StyleSheet.create({
     flex: 1,
     paddingVertical: 15,
   },
+  container: {
+    paddingHorizontal: 15,
+  },
 });

@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 20,
     marginVertical: 15,
+    width: "90%",
     backgroundColor: COLORS.primary,
   },
   buttonPrimary: {
@@ -94,6 +95,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 20,
     marginVertical: 15,
+    width: "90%",
     backgroundColor: COLORS.white,
   },
 });

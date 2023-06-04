@@ -17,9 +17,7 @@ interface IPropTypes {
 }
 const DayStack = ({ route }: IPropTypes) => {
   const navigation = useNavigation();
-  const { title, trainings } = route.params;
-
-  const trainingsData = trainings.map((training: ITraining) => training);
+  const { name, trainingExercises, kcal, time } = route.params;
 
   return (
     <SafeAreaView style={s.modal}>
@@ -28,7 +26,7 @@ const DayStack = ({ route }: IPropTypes) => {
           <Pressable onPress={() => navigation.goBack()} style={s.back}>
             <Ionicons name="arrow-back" size={24} color={COLORS.white} />
           </Pressable>
-          <HeaderText>{title}</HeaderText>
+          <HeaderText>{name}</HeaderText>
         </View>
         <View style={s.info}>
           <View style={s.info_item}>
@@ -38,7 +36,7 @@ const DayStack = ({ route }: IPropTypes) => {
               size={22}
               color={COLORS.white}
             />
-            <HeaderText>8</HeaderText>
+            <HeaderText>{trainingExercises.length}</HeaderText>
             <AppText size={16}>work</AppText>
           </View>
           <View style={s.info_item}>
@@ -48,26 +46,26 @@ const DayStack = ({ route }: IPropTypes) => {
               size={22}
               color={COLORS.white}
             />
-            <HeaderText>230</HeaderText>
+            <HeaderText>{kcal}</HeaderText>
             <AppText size={16}>Kcal</AppText>
           </View>
           <View style={s.info_item}>
             <Entypo name="stopwatch" style={s.info_icon} size={22} color={COLORS.white} />
-            <HeaderText>10</HeaderText>
+            <HeaderText>{time}</HeaderText>
             <AppText size={16}>min</AppText>
           </View>
         </View>
       </View>
       <FlatList
-        data={trainingsData}
+        data={trainingExercises}
         renderItem={({ item }) => <WorkoutInfo training={item} />}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
       />
       <ButtonPrimary
         style={s.start}
         tittle="Start"
-        onPress={() => navigation.navigate("WorkoutStack", { trainings })}
+        onPress={() => navigation.navigate("WorkoutStack", { trainingExercises })}
       />
     </SafeAreaView>
   );

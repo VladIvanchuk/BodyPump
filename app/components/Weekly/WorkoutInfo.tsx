@@ -6,15 +6,22 @@ import { COLORS } from "../../constants";
 import { ITraining } from "../../types/training";
 
 const WorkoutInfo = ({ training }: { training: ITraining }) => {
+  const { repeats, sets, exercise } = training;
+
   return (
     <View key={training.id} style={s.item}>
       <View style={s.text}>
-        <HeaderText size={18}>{training.title}</HeaderText>
+        <HeaderText size={18}>{exercise.name}</HeaderText>
         <AppText>
-          {training.sets} Sets x {training.reps} Reps
+          {sets} Sets x {repeats} Reps
         </AppText>
       </View>
-      <ImageBackground source={{ uri: training.img }} resizeMode="contain">
+      <ImageBackground
+        source={{
+          uri: `data:image/png;base64,${exercise.image}`,
+        }}
+        resizeMode="contain"
+      >
         <View style={s.image}></View>
       </ImageBackground>
     </View>

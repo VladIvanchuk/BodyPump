@@ -8,9 +8,16 @@ interface IPropTypes {
   color?: string;
   children: React.ReactNode;
   style?: {};
+  numberOfLines?: number;
 }
 
-const AppText: FC<IPropTypes> = ({ style, color = COLORS.white, size, children }) => {
+const AppText: FC<IPropTypes> = ({
+  style,
+  color = COLORS.white,
+  size,
+  children,
+  numberOfLines,
+}) => {
   return (
     <Text
       style={[
@@ -21,6 +28,7 @@ const AppText: FC<IPropTypes> = ({ style, color = COLORS.white, size, children }
         },
         { ...style },
       ]}
+      numberOfLines={numberOfLines}
     >
       {children}
     </Text>

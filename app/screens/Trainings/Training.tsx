@@ -1,24 +1,34 @@
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, FlatList } from "react-native";
 import { global } from "../../styles/global.style";
 
-import { TrainingComponent, WeekPlan } from "../../components";
+import { Placeholder, TrainingPlan } from "../../components";
+import { useGetTrainingPlansQuery } from "../../api/trainingPlan";
 
 const Training = () => {
+  const { data = [], isLoading } = useGetTrainingPlansQuery({});
+
+  console.log(isLoading);
+
   return (
-    <ScrollView style={global.main} showsVerticalScrollIndicator={false}>
+    <View style={global.main}>
       <View style={s.container}>
-        <WeekPlan />
-        <TrainingComponent
-          title="Progressive programs"
-          description="Training to progress the number of repetitions"
-        />
-        <TrainingComponent
-          title="Muscle training"
-          description="Training of individual muscle groups"
-        />
-        <TrainingComponent title="My trainings" description="Your custom trainings" />
+        {isLoading ? (
+          <>
+            <Placeholder height={20} width={320} style={s.placeholder} />
+            <Placeholder height={200} width={320} style={s.placeholder} />
+            <Placeholder height={20} width={320} style={s.placeholder} />
+            <Placeholder height={200} width={320} style={s.placeholder} />
+          </>
+        ) : (
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={data}
+            renderItem={({ item }) => <TrainingPlan {...item} />}
+            keyExtractor={(item) => item.id}
+          />
+        )}
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -28,5 +38,12 @@ const s = StyleSheet.create({
   container: {
     marginBottom: 80,
     flex: 1,
+  },
+  placeholder: {
+    paddingHorizontal: 20,
+    marginHorizontal: 20,
+    borderRadius: 10,
+    width: "auto",
+    marginBottom: 20,
   },
 });

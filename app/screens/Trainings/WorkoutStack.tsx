@@ -1,11 +1,4 @@
-import {
-  Alert,
-  BackHandler,
-  ImageBackground,
-  Pressable,
-  StyleSheet,
-  View,
-} from "react-native";
+import { BackHandler, ImageBackground, Pressable, StyleSheet, View } from "react-native";
 import React, { FC, useCallback, useEffect, useState } from "react";
 import { IDay } from "../../types/training";
 import Timer from "../../components/Timer";
@@ -24,16 +17,16 @@ interface IPropTypes {
   };
 }
 
-const WorkoutStack = ({ route }: IPropTypes) => {
-  const exercises = route.params.trainings;
+const WorkoutStack: FC<IPropTypes> = ({ route }) => {
+  const exercises = route.params.trainingExercises;
   const navigation =
     useNavigation<StackNavigationProp<RootStackParamList, "WorkoutStack">>();
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { img, title, reps, sets, rest } = exercises?.[currentIndex] || {};
+  const { exercise, repeats, sets, restTime } = exercises?.[currentIndex] || {};
 
-  const [restTime, setRestTime] = useState(rest);
-  const [currentReps, setCurrentReps] = useState(reps);
+  const [restingTime, setRestTime] = useState(restTime);
+  const [currentReps, setCurrentReps] = useState(repeats);
   const [isResting, setIsResting] = useState(false);
   const [currentSet, setCurrentSet] = useState(1);
 
@@ -51,11 +44,11 @@ const WorkoutStack = ({ route }: IPropTypes) => {
         setCurrentSet(currentSet + 1);
       }
       setIsResting(true);
-      setRestTime(rest);
+      setRestTime(restingTime);
     } else if (isLastWorkout) {
       navigation.navigate("Statistics");
     }
-  }, [currentIndex, currentSet, exercises, rest, sets]);
+  }, [currentIndex, currentSet, exercises, restingTime, sets]);
 
   const handleSkipRest = useCallback(() => {
     setIsResting(false);
@@ -106,12 +99,17 @@ const WorkoutStack = ({ route }: IPropTypes) => {
             <Ionicons name="arrow-back" size={24} color={COLORS.white} />
           </Pressable>
           <View style={s.imageBg}>
-            <ImageBackground source={{ uri: img }} resizeMode="contain">
+            <ImageBackground
+              source={{
+                uri: `data:image/png;base64,${exercise.image}`,
+              }}
+              resizeMode="contain"
+            >
               <View style={s.image}></View>
             </ImageBackground>
           </View>
           <View style={s.info}>
-            <HeaderText size={24}>{title}</HeaderText>
+            <HeaderText size={24}>{exercise.name}</HeaderText>
             <View style={s.count}>
               <View style={s.reps}>
                 <Pressable style={s.reps_control} onPress={() => handleReps(-1)}>
@@ -145,7 +143,7 @@ const WorkoutStack = ({ route }: IPropTypes) => {
         <Timer
           time={restTime}
           handleSkip={handleSkipRest}
-          exercise={exercises[currentIndex]}
+          data={exercises[currentIndex]}
           currentSet={currentSet}
           paused={modalVisible}
         />

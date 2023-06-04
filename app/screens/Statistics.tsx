@@ -1,15 +1,26 @@
-import { View, Text } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import { global } from "../styles/global.style";
+import { History, Total } from "../components";
+import { COLORS } from "../constants";
+import { useGetHistoryQuery } from "../api/historySlice";
 
 const Statistics = () => {
-  const navigation = useNavigation();
-
   return (
-    <View>
-      <Text>Statistics</Text>
-    </View>
+    <ScrollView style={global.main} showsVerticalScrollIndicator={false}>
+      <View style={styles.wrapper}>
+        <Total />
+        <History />
+      </View>
+    </ScrollView>
   );
 };
 
 export default Statistics;
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    marginBottom: 100,
+  },
+});

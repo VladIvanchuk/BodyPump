@@ -12,7 +12,14 @@ import { IDay } from "../../types";
 import HeaderText from "../ui/HeaderText";
 
 const Day = (props: IDay & { onPress: () => void }) => {
-  const { title, body, progress, IsActive, onPress } = props;
+  const [IsActive, setIsActive] = useState(false);
+  const { name, description, progress, onPress, previousProgress } = props;
+
+  useEffect(() => {
+    if (previousProgress === 100) {
+      setIsActive(true);
+    }
+  }, [previousProgress]);
 
   return (
     <Pressable
@@ -23,8 +30,8 @@ const Day = (props: IDay & { onPress: () => void }) => {
       ]}
     >
       <View style={s.info}>
-        <AppText size={18}>{title}</AppText>
-        <AppText size={14}>{body}</AppText>
+        <AppText size={18}>{name}</AppText>
+        <AppText size={14}>{description}</AppText>
       </View>
       {progress < 100 && !IsActive ? (
         <CircularProgress

@@ -14,15 +14,9 @@ interface TimerProps {
   paused?: boolean;
 }
 
-const Timer: React.FC<TimerProps> = ({
-  time,
-  handleSkip,
-  currentSet,
-  exercise,
-  paused,
-}) => {
+const Timer: React.FC<TimerProps> = ({ time, handleSkip, currentSet, data, paused }) => {
   const [seconds, setSeconds] = useState(time);
-  const { title, reps, sets } = exercise;
+  const { exercise, repeats, sets } = data;
 
   const handleAddTime = () => {
     setSeconds(seconds + 15);
@@ -56,9 +50,9 @@ const Timer: React.FC<TimerProps> = ({
       </View>
       <View style={s.bottom}>
         <AppText color={COLORS.dark}>Next</AppText>
-        <HeaderText color={COLORS.dark}>{title}</HeaderText>
+        <HeaderText color={COLORS.dark}>{exercise.name}</HeaderText>
         <View style={s.info}>
-          <HeaderText color={COLORS.dark}>{reps} Reps</HeaderText>
+          <HeaderText color={COLORS.dark}>{repeats} Reps</HeaderText>
           <HeaderText color={COLORS.dark}>
             Set {currentSet}/{sets}
           </HeaderText>

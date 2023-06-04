@@ -25,13 +25,13 @@ const TrainingComponent: FC<IPropTypes> = ({ title, description }) => {
         style={s.wrapper}
       >
         <View style={s.item}>
-          <AppText>1</AppText>
+          <AppText>Coming soon</AppText>
         </View>
         <View style={s.item}>
-          <AppText>2</AppText>
+          <AppText>Coming soon</AppText>
         </View>
         <View style={s.item}>
-          <AppText>3</AppText>
+          <AppText>Coming soon</AppText>
         </View>
       </ScrollView>
     </View>
